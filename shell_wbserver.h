@@ -5,13 +5,13 @@
 
 #include <ESP8266WebServer.h>
 #include "kernel_cmd.h"
-#include "html_core.h"  // Adaugă acest include pentru a avea acces la getHTML()
+#include "html_core.h"  
 
 ESP8266WebServer server(80);
 
 void setupWebServer() {
     server.on("/", HTTP_GET, []() {
-        server.send(200, "text/html", getHTML());  // Acum funcția getHTML() este recunoscută
+        server.send(200, "text/html", getHTML());  
     });
 
     server.on("/cmd", HTTP_GET, []() {
