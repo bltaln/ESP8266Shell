@@ -1,5 +1,4 @@
 // www.linecode.ro
-// www.linecode.ro
 // kernel_cmd.h
 
 #ifndef KERNEL_CMD_H
@@ -18,16 +17,14 @@ String processCommand(String command) {
   } else if (command == "ip") {
     return "IP Address: " + WiFi.localIP().toString();
   } else if (command == "reset") {
-    // Aș dori să adaug un mesaj de confirmare înainte de a restarta dispozitivul
     return "Are you sure you want to restart? Type 'yes' to confirm.";
   } else if (command == "scan") {
-    // Înlocuim scanarea WiFi cu un buffer de rețele scanate pentru a evita scanările repetate
     static String scanResult = "";
     static unsigned long lastScanTime = 0;
     
     unsigned long currentMillis = millis();
-    if (currentMillis - lastScanTime > 60000) {  // Dacă a trecut mai mult de 1 minut de la ultima scanare
-      int n = WiFi.scanNetworks(); // Scanează rețelele WiFi
+    if (currentMillis - lastScanTime > 60000) {  
+      int n = WiFi.scanNetworks(); 
       if (n == 0) {
         scanResult = "No WiFi networks found.";
       } else {
@@ -36,7 +33,7 @@ String processCommand(String command) {
           scanResult += String(i + 1) + ". " + WiFi.SSID(i) + " (Signal: " + String(WiFi.RSSI(i)) + " dBm)\n";
         }
       }
-      lastScanTime = currentMillis; // Actualizează timpul ultimei scanări
+      lastScanTime = currentMillis; 
     }
     return scanResult;
   } else if (command == "help") {
