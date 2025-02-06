@@ -8,7 +8,7 @@ String getHTML() {
     <!DOCTYPE html>
     <html>
     <head>
-      <title>LineCode WebOS Shell</title>
+      <title>LineCode Shell</title>
       <style>
         body {
           font-family: monospace;
@@ -40,8 +40,8 @@ String getHTML() {
         .input-line span {
           color: #0f0;
           margin-right: 5px;
-          display: inline-block; /* Permite aplicarea transformării */
-          animation: rotateSymbol 2s linear infinite; /* Rotație continuă la fiecare 2 secunde */
+          display: inline-block; 
+          animation: rotateSymbol 2s linear infinite; 
         }
         .input-line input {
           background: transparent;
@@ -54,10 +54,10 @@ String getHTML() {
         /* Animația de rotație */
         @keyframes rotateSymbol {
           0% {
-            transform: rotate(0deg); /* Faza inițială fără rotație */
+            transform: rotate(0deg); 
           }
           100% {
-            transform: rotate(360deg); /* Rotație completă */
+            transform: rotate(360deg); 
           }
         }
       </style>
@@ -71,7 +71,7 @@ String getHTML() {
 
           // Afișăm mesajul de bun venit și comenzile disponibile
           const welcomeMessage = [
-            "LineCode WebOS Shell - www.linecode.ro -",
+            "LineCode Shell - www.linecode.ro -",
             "Coded : B. Alin Gabriel ",
             "MIT License",
             "________________________________________",
