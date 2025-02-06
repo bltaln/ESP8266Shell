@@ -9,26 +9,20 @@
 #include "html_core.h"
 #include "sys_script.h"
 
-const char* ssid = "WirLab Gabriel";          // Numele rețelei Wi-Fi
-const char* password = "29101986";            // Parola Wi-Fi
+const char* ssid = "wifi name here";                       
+const char* password = "wifi password";           
 
-unsigned long previousMillis = 0;             // Timpul pentru clipire LED
-const long interval = 200;                    // Intervalul pentru clipirea LED-ului (în milisecunde)
-bool activityFlag = false;                    // Flag pentru activitate
-
-// Definirea funcțiilor de activitate
+unsigned long previousMillis = 0;             
+const long interval = 200;                   
+bool activityFlag = false;                   
 void onActivityDetected() {
-  activityFlag = true;  // Marchează activitatea
+  activityFlag = true;  
 }
-
 void onNoActivity() {
-  activityFlag = false;  // Oprește activitatea
+  activityFlag = false;  
 }
-
 void setup() {
   Serial.begin(115200);
-  
-  // Conectare la rețeaua Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -37,27 +31,20 @@ void setup() {
   Serial.println("\nWiFi connected");
   Serial.println("IP address: " + WiFi.localIP().toString());
 
-  // Configurare server web
   setupWebServer();
   
-  // Setare pin LED_BUILTIN ca ieșire
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
-  handleWebRequests(); // Gestionează cererile web
-  
-  // Dacă există activitate (cerere web primită), aprinde LED-ul
+  handleWebRequests(); 
   if (activityFlag) {
     unsigned long currentMillis = millis();
-
-    // Clipire LED în intervalul definit
     if (currentMillis - previousMillis >= interval) {
       previousMillis = currentMillis;
-      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // Inversează starea LED-ului
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  
     }
   } else {
-    // LED-ul este stins atunci când nu există activitate
     digitalWrite(LED_BUILTIN, LOW);
   }
 }
